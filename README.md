@@ -123,4 +123,4 @@ We are not responsible for any damages, capital losses, or any claim caused by t
 
 USE IT AT YOUR OWN RISK.
 
-[LICENSE]: LICENSE.txt
+[LICENSE]: LICENSE

@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/brunomeira/questrade_api.svg?branch=master)](https://travis-ci.org/brunomeira/questrade_api) 
+
 # QuestradeApi
 
 A Ruby interface to use the [Questrade API](http://www.questrade.com/api).
@@ -5,34 +7,22 @@ A Ruby interface to use the [Questrade API](http://www.questrade.com/api).
 ## Quick Start
 
 1. Create a Questrade Demo Account on: <http://www.questrade.com/api/free-practice-account>
-
 2. Add the following line to your Gemfile
-
 ```
 gem 'questrade_api'
-
 ```
-
 3. Run Bundle to install gem
-
 ```
 $ bundle
-
 ```
-
 4. Follow the tutorial on <http://www.questrade.com/api/documentation/getting-started> to generate a refresh token
-
 5. Copy the snippet of code below to your application, and replace the 'XXXX' token with the token generated on step 4.
-
 ```ruby
 # By default this API calls the practice(demo) endpoint.
 # Check our documentation to learn how to call the live endpoint.
 client = QuestradeApi::Client.new(refresh_token: 'XXXX')
-
 ```
-
 6. That's all you need to access the API. A few examples of what you can do with it:
-
 ```ruby
 # Get Questrade's current server time
 client.time
@@ -53,10 +43,8 @@ client.activities('account_id', startTime: DateTime.yesterday.to_s, endTime: Dat
 # authorization can be any object that responds to url and access_token
 authorization = QuestradeApi::Authorization.new(access_token: 'access_token', api_server: 'url')
 accounts = QuestradeApi::REST::Account.all(accounts)
-
 ```
-
-For more advanced options, check out our [documentation](http://www.google.com).
+For more advanced options, check out our [documentation](http://www.rubydoc.info/gems/questrade_api).
 
 ## Current Status
 

@@ -49,7 +49,7 @@ client.activities('account_id', startTime: DateTime.yesterday.to_s, endTime: Dat
 authorization = QuestradeApi::Authorization.new(access_token: 'access_token', api_server: 'url')
 accounts = QuestradeApi::REST::Account.all(accounts)
 ```
-For more advanced options, check out our [documentation](http://www.rubydoc.info/gems/questrade_api).
+For more advanced options, check out our [documentation](http://www.rubydoc.info/gems/questrade_api/0.0.2).
 
 ## Current Status
 

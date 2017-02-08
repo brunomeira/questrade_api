@@ -12,8 +12,8 @@ describe QuestradeApi::REST::Activity do
 
   context '.all' do
     it "returns an object that contains a list of all user's activities for the specific period" do
-      start_time = DateTime.now.to_s
-      end_time = DateTime.now.to_s
+      start_time = '2011-02-16T00:00:00.000000-05:00'
+      end_time = '2011-02-16T00:00:00.000000-05:00'
       params = "startTime=#{start_time}&endTime=#{end_time}"
       full_url =
         url + QuestradeApi::REST::Activity.endpoint(account_id) + "?#{params}"

@@ -12,7 +12,7 @@ describe QuestradeApi::REST::Order do
 
   context '.all' do
     it "returns an object that contains a list of all user's orders" do
-      time = DateTime.now.to_s
+      time = '2014-03-31T13:38:29-04:00'
       params = "startTime=#{time}&endTime=#{time}&stateFilter=All"
       full_url =
         url + QuestradeApi::REST::Order.endpoint(account_id) + "?#{params}"

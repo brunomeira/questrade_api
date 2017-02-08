@@ -12,8 +12,8 @@ describe QuestradeApi::REST::Execution do
 
   context '.all' do
     it "returns an object that contains a list of all user's executions for the specific period" do
-      start_time = DateTime.now.to_s
-      end_time = DateTime.now.to_s
+      start_time = '2014-03-31T13:38:29-04:00'
+      end_time = '2014-03-31T13:38:29-04:00'
       params = "startTime=#{start_time}&endTime=#{end_time}"
       full_url =
         url + QuestradeApi::REST::Execution.endpoint(account_id) + "?#{params}"

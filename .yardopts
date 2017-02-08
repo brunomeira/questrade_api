@@ -1,0 +1,9 @@
+--title "QuestradeApi Documentation"
+--markup-provider redcarpet
+--markup markdown
+--readme README.md
+--protected
+--exclude lib/questrade_api/modules/util.rb
+-
+'lib/questrade_api/**/*.rb'
+LICENSE

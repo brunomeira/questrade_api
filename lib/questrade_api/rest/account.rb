@@ -22,6 +22,7 @@ module QuestradeApi
         build_data(params[:data]) if @raw_body
       end
 
+      #
       # Fetch activities associated with account.
       #
       # @param see QuestradeApi::REST::Activity.all

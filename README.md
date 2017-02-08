@@ -7,23 +7,27 @@ A Ruby interface to use the [Questrade API](http://www.questrade.com/api).
 
 ## Quick Start
 
-1. Create a Questrade Demo Account on: <http://www.questrade.com/api/free-practice-account>
-2. Add the following line to your Gemfile
+- Create a Questrade Demo Account on: <http://www.questrade.com/api/free-practice-account>
+- Add the following line to your Gemfile
+
 ```
 gem 'questrade_api'
 ```
-3. Run Bundle to install gem
+- Run Bundle to install gem
+
 ```
 $ bundle
 ```
-4. Follow the tutorial on <http://www.questrade.com/api/documentation/getting-started> to generate a refresh token
-5. Copy the snippet of code below to your application, and replace the 'XXXX' token with the token generated on step 4.
+- Follow the tutorial on <http://www.questrade.com/api/documentation/getting-started> to generate a refresh token
+- Copy the snippet of code below to your application, and replace the 'XXXX' token with the token generated in the previous step.
+
 ```ruby
 # By default this API calls the practice(demo) endpoint.
 # Check our documentation to learn how to call the live endpoint.
 client = QuestradeApi::Client.new(refresh_token: 'XXXX')
 ```
-6. That's all you need to access the API. A few examples of what you can do with it:
+- That's all you need to access the API. A few examples of what you can do with it:
+
 ```ruby
 # Get Questrade's current server time
 client.time
@@ -52,47 +56,40 @@ For more advanced options, check out our [documentation](http://www.rubydoc.info
 This Project is under development and some endpoints are still not accessible through the gem.
 Check the tables below for more details.
 
-<dl>
-  <dt>LEGEND</dt>
-
-  <dd>:green_heart: = Available</dd>
-  <dd>:heart: = Not Available</dd>
-</dl>
-
 ### Account Calls
 
 | Endpoint                 | Development   | Documentation |
 | ---                      | ---           | ---           |
-| /time                    | :green_heart: | :green_heart: |
-| /accounts                | :green_heart: | :green_heart: |
-| /accounts/:id/positions  | :green_heart: | :heart:       |
-| /accounts/:id/balances   | :green_heart: | :heart:       |
-| /accounts/:id/executions | :green_heart: | :heart:       |
-| /accounts/:id/orders     | :green_heart: | :heart:       |
-| /accounts/:id/activities | :green_heart: | :heart:       |
+| /time                    |DONE           | DONE          |
+| /accounts                |DONE           | DONE          |
+| /accounts/:id/positions  |DONE           | DONE          |
+| /accounts/:id/balances   |DONE           | DONE          |
+| /accounts/:id/executions |DONE           | DONE          |
+| /accounts/:id/orders     |DONE           | DONE          |
+| /accounts/:id/activities |DONE           | DONE          |
 
 ### Market Calls
 
 | Endpoint                   | Development   | Documentation |
 | ---                        | ---           | ---           |
-| /symbols/:id               | :heart:       | :heart:       |
-| /symbols/:search           | :heart:       | :heart:       |
-| /symbols/:id/options       | :heart:       | :heart:       |
-| /markets                   | :green_heart: | :heart:       |
-| /markets/quotes/:id        | :heart:       | :heart:       |
-| /markets/quotes/options    | :heart:       | :heart:       |
-| /markets/quotes/strategies | :heart:       | :heart:       |
-| /markets/candles/:id       | :heart:       | :heart:       |
+| /symbols/:id               |      |      |
+| /symbols/:search           |      |      |
+| /symbols/:id/options       |      |      |
+| /markets                   |DONE|      |
+| /markets/quotes/:id        |      |      |
+| /markets/quotes/options    |      |      |
+| /markets/quotes/strategies |      |      |
+| /markets/candles/:id       |      |      |
 
 ### Order Calls
 
 | Endpoint                          | Development   | Documentation |
 | ---                               | ---           | ---           |
-| POST accounts/:id/orders          | :heart:       | :heart:       |
-| POST accounts/:id/orders/impact   | :heart:       | :heart:       |
-| DELETE accounts/:id/orders        | :heart:       | :heart:       |
-| POST accounts/:id/orders/brackets | :heart:       | :heart:       |
-| POST accounts/:id/orders/strategy | :heart:       | :heart:       |
+| POST accounts/:id/orders          |      |      |
+| POST accounts/:id/orders/impact   |      |      |
+| DELETE accounts/:id/orders        |      |      |
+| POST accounts/:id/orders/brackets |      |      |
+| POST accounts/:id/orders/strategy |      |      |
 
 ## Contributing
 
@@ -112,4 +109,4 @@ We are not responsible for any damages, capital losses, or any claim caused by t
 
 USE IT AT YOUR OWN RISK.
 
-[LICENSE]: LICENSE
+[LICENSE]: https://github.com/brunomeira/questrade_api/blob/master/LICENSE

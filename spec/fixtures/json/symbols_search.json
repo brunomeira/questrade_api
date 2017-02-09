@@ -1,0 +1,24 @@
+{
+  "symbol": [
+    {
+      "symbol": "BMO",
+      "symbolId": 9292,
+      "description": "BANK OF MONTREAL",
+      "securityType": "Stock",
+      "listingExchange": "NYSE",
+      "isTradable": true,
+      "isQuotable": true,
+      "currency": "USD"
+    },
+    {
+      "symbol": "BMO.PRJ.TO",
+      "symbolId": 9300,
+      "description": "BANK OF MONTREAL CL B SR 13",
+      "securityType": "Stock",
+      "listingExchange": "TSX",
+      "isTradable": true,
+      "isQuotable": true,
+      "currency": "CAD"
+    }
+  ]
+}

@@ -72,10 +72,11 @@ Check the tables below for more details.
 
 | Endpoint                   | Development   | Documentation |
 | ---                        | ---           | ---           |
-| /symbols/:id               |      |      |
-| /symbols/:search           |      |      |
+| /symbols/                  | DONE          |      |
+| /symbols/:id               |               |      |
+| /symbols/search            | DONE          |      |
 | /symbols/:id/options       |      |      |
-| /markets                   |DONE|      |
+| /markets                   | DONE          |               |
 | /markets/quotes/:id        |      |      |
 | /markets/quotes/options    |      |      |
 | /markets/quotes/strategies |      |      |

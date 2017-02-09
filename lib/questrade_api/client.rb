@@ -8,6 +8,7 @@ require 'questrade_api/rest/activity'
 require 'questrade_api/rest/order'
 
 require 'questrade_api/rest/market'
+require 'questrade_api/rest/symbol'
 
 module QuestradeApi
   # @author Bruno Meira <goesmeira@gmail.com>
@@ -75,6 +76,14 @@ module QuestradeApi
 
     def markets
       QuestradeApi::REST::Market.all(@authorization)
+    end
+
+    def symbols(params)
+      QuestradeApi::REST::Symbol.all(@authorization, params)
+    end
+
+    def search_symbols(params)
+      QuestradeApi::REST::Symbol.search(@authorization, params)
     end
 
     private

@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/brunomeira/questrade_api.svg?branch=master)](https://travis-ci.org/brunomeira/questrade_api) 
 [![Code Climate](https://codeclimate.com/github/brunomeira/questrade_api/badges/gpa.svg)](https://codeclimate.com/github/brunomeira/questrade_api)
 
-# QuestradeApi
+# The Questrade Ruby Api Gem
 
 A Ruby interface to use the [Questrade API](http://www.questrade.com/api).
 

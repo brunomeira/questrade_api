@@ -8,12 +8,12 @@ describe QuestradeApi::REST::Option do
   let(:url) { 'http://test.com'}
   let(:authorization) { OpenStruct.new(access_token: access_token, url: url) }
 
-  context '.all' do
+  context '.fetch' do
     it 'fetches option chain for an specific symbol' do
        stub_request(:get, 'http://test.com/v1/symbol/9291/options')
          .to_return(status: 200, body: json_string('options.json'))
 
-      response = QuestradeApi::REST::Option.all(authorization, 9291)
+      response = QuestradeApi::REST::Option.fetch(authorization, 9291)
 
       expect(response.options.size).to be(1)
 

@@ -27,7 +27,7 @@ describe QuestradeApi::REST::Quote do
 
       expect(subject.data).to be_nil
 
-      subject.get
+      subject.fetch
 
       expect(subject.data.to_h).to eq(
         symbol: "THI.TO",
@@ -52,12 +52,12 @@ describe QuestradeApi::REST::Quote do
     end
   end
 
-  context '.all' do
+  context '.fetch' do
     it 'fetches quote for an specific symbol' do
       stub_request(:get, 'http://test.com/v1/markets/quotes?ids=12,11')
          .to_return(status: 200, body: json_string('quotes.json'))
 
-      response = QuestradeApi::REST::Quote.all(authorization, [12, 11])
+      response = QuestradeApi::REST::Quote.fetch(authorization, [12, 11])
 
       expect(response.quotes.size).to be(1)
 

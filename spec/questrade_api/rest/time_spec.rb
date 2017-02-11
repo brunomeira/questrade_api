@@ -11,7 +11,7 @@ describe QuestradeApi::REST::Time do
 
   subject { QuestradeApi::REST::Time.new(authorization) }
 
-  context '#get' do
+  context '#fetch' do
     let(:url) { 'http://test.com/v1/time' }
 
     it 'calls the proper endpoint with proper data' do
@@ -19,7 +19,7 @@ describe QuestradeApi::REST::Time do
 
       stub_request(:get, url).to_return(status: 200,
                                         body: json_string('time.json'))
-      subject.get
+      subject.fetch
 
       expect(subject.data).to_not be_nil
       expect(subject.data.time).to eq('2017-01-24T12:14:42.730000-04:00')

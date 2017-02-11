@@ -1,21 +1,12 @@
 require 'questrade_api/authorization'
-require 'questrade_api/rest/time'
-require 'questrade_api/rest/account'
-require 'questrade_api/rest/balance'
-require 'questrade_api/rest/position'
-require 'questrade_api/rest/execution'
-require 'questrade_api/rest/activity'
-require 'questrade_api/rest/order'
-
-require 'questrade_api/rest/market'
-require 'questrade_api/rest/symbol'
-require 'questrade_api/rest/quote'
-require 'questrade_api/rest/candle'
-require 'questrade_api/rest/option'
+require 'questrade_api/modules/account_call'
 
 module QuestradeApi
   # @author Bruno Meira <goesmeira@gmail.com>
   class Client
+    include QuestradeApi::AccountCall
+    include QuestradeApi::MarketCall
+
     attr_reader :authorization
 
     # @see QuestradeApi::Client#initialize for more details
@@ -29,86 +20,6 @@ module QuestradeApi
       @authorization.refresh_token
     end
 
-    # Fetch current server time.
-    #
-    # @return [DateTime] if no issues to call /time endpoint occurs.
-    # @return [nil] if current server time cannot be fetched.
-    def time
-      time = QuestradeApi::REST::Time.new(@authorization)
-      time.get
-
-      time.data && time.data.time
-    end
-
-    # Fetch all accounts associated with user.
-    #
-    # @return [Array<QuestradeApi::REST::Account>]
-    def accounts
-      QuestradeApi::REST::Account.all(@authorization).accounts
-    end
-
-    # Fetch all positions associated with account.
-    #
-    # @param account_id [String] to which positions will be fetched.
-    #
-    # @return [Array<QuestradeApi::REST::Position>]
-    def positions(account_id)
-      QuestradeApi::REST::Position.all(@authorization, account_id).positions
-    end
-
-    # Fetch all balances associated with account.
-    #
-    # @param account_id [String] to which balances will be fetched.
-    #
-    # @return [OpenStruct(per_currency_balances)]
-    def balances(account_id)
-      QuestradeApi::REST::Balance.all(@authorization, account_id)
-    end
-
-    def executions(account_id, params = {})
-      QuestradeApi::REST::Execution.all(@authorization, account_id, params)
-    end
-
-    def activities(account_id, params = {})
-      QuestradeApi::REST::Activity.all(@authorization, account_id, params)
-    end
-
-    def orders(account_id, params = {})
-      QuestradeApi::REST::Activity.all(@authorization, account_id, params)
-    end
-
-    def markets
-      QuestradeApi::REST::Market.all(@authorization)
-    end
-
-    def symbols(params)
-      QuestradeApi::REST::Symbol.all(@authorization, params)
-    end
-
-    def search_symbols(params)
-      QuestradeApi::REST::Symbol.search(@authorization, params)
-    end
-
-    def quotes(ids)
-      QuestradeApi::REST::Quote.all(@authorization, ids)
-    end
-
-    def quote(id)
-      quote =
-        QuestradeApi::REST::Quote.new(authorization: @authorization, id: id)
-
-      quote.get
-
-      quote
-    end
-
-    def candles(symbol_id, params)
-      QuestradeApi::REST::Candle.all(@authorization, symbol_id, params)
-    end
-
-    def symbol_options(symbol_id)
-      QuestradeApi::REST::Option.all(@authorization, symbol_id)
-    end
 
     private
 

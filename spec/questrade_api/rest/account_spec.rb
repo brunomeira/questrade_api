@@ -15,7 +15,7 @@ describe QuestradeApi::REST::Account do
 
     it 'returns a list of activities' do
       expect(QuestradeApi::REST::Activity)
-        .to(receive(:all).with(authorization, id, {}))
+        .to(receive(:fetch).with(authorization, id, {}))
         .once
 
       subject.activities({})
@@ -23,7 +23,7 @@ describe QuestradeApi::REST::Account do
 
     it 'returns a list of executions' do
       expect(QuestradeApi::REST::Execution)
-        .to(receive(:all).with(authorization, id, {}))
+        .to(receive(:fetch).with(authorization, id, {}))
         .once
 
       subject.executions({})
@@ -31,7 +31,7 @@ describe QuestradeApi::REST::Account do
 
     it 'returns a list of positions' do
       expect(QuestradeApi::REST::Position)
-        .to(receive(:all).with(authorization, id))
+        .to(receive(:fetch).with(authorization, id))
         .once
 
       subject.positions
@@ -39,21 +39,21 @@ describe QuestradeApi::REST::Account do
 
     it 'returns a list of balances' do
       expect(QuestradeApi::REST::Balance)
-        .to(receive(:all).with(authorization, id))
+        .to(receive(:fetch).with(authorization, id))
         .once
 
       subject.balances
     end
   end
 
-  context '.all' do
+  context '.fetch' do
     it "returns an object that contains a list of all user's accounts" do
       full_url = url + QuestradeApi::REST::Account.endpoint
       stub_request(:get, full_url).to_return(status: 200,
                                              body: json_string('accounts.json'),
                                              headers: {})
 
-      response = QuestradeApi::REST::Account.all(authorization)
+      response = QuestradeApi::REST::Account.fetch(authorization)
 
       expect(response.accounts.size).to be(2)
 

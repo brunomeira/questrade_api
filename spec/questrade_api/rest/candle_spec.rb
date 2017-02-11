@@ -8,7 +8,7 @@ describe QuestradeApi::REST::Candle do
   let(:url) { 'http://test.com'}
   let(:authorization) { OpenStruct.new(access_token: access_token, url: url) }
 
-  context '.all' do
+  context '.fetch' do
     it 'fetches candle for an specific symbol' do
       start_time = '2014-10-01T00:00:00-05:00'
       end_time = '2014-10-01T00:00:00-05:00'
@@ -22,7 +22,7 @@ describe QuestradeApi::REST::Candle do
         interval: interval
       }
 
-      response = QuestradeApi::REST::Candle.all(authorization, 1010, params)
+      response = QuestradeApi::REST::Candle.fetch(authorization, 1010, params)
 
       expect(response.candles.size).to be(1)
 

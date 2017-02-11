@@ -10,7 +10,7 @@ describe QuestradeApi::REST::Order do
   let(:url) { 'http://test.com'}
   let(:authorization) { OpenStruct.new(access_token: access_token, url: url) }
 
-  context '.all' do
+  context '.fetch' do
     it "returns an object that contains a list of all user's orders" do
       time = '2014-03-31T13:38:29-04:00'
       params = "startTime=#{time}&endTime=#{time}&stateFilter=All"
@@ -19,7 +19,7 @@ describe QuestradeApi::REST::Order do
 
       stub_request(:get, full_url).to_return(status: 200, body: json_string('orders.json'))
 
-      response = QuestradeApi::REST::Order.all(authorization, account_id,
+      response = QuestradeApi::REST::Order.fetch(authorization, account_id,
                                                startTime: time, endTime: time, stateFilter: 'All')
 
       expect(response.orders.size).to be(1)

@@ -15,7 +15,7 @@ module QuestradeApi
         build_data(params[:data]) if @raw_body
       end
 
-      def self.all(authorization, account_number, params)
+      def self.fetch(authorization, account_number, params)
 
         response = super(access_token: authorization.access_token,
                          endpoint: endpoint(account_number),

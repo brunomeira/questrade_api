@@ -10,13 +10,13 @@ describe QuestradeApi::REST::Position do
   let(:url) { 'http://test.com'}
   let(:authorization) { OpenStruct.new(access_token: access_token, url: url) }
 
-  context '.all' do
+  context '.fetch' do
     it "returns an object that contains a list of all user's positions" do
       full_url = url + QuestradeApi::REST::Position.endpoint(account_id)
 
       stub_request(:get, full_url).to_return(status: 200, body: json_string('positions.json'))
 
-      response = QuestradeApi::REST::Position.all(authorization, account_id)
+      response = QuestradeApi::REST::Position.fetch(authorization, account_id)
 
       expect(response.positions.size).to be(1)
 

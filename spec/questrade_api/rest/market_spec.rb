@@ -10,13 +10,13 @@ describe QuestradeApi::REST::Market do
   let(:url) { 'http://test.com'}
   let(:authorization) { OpenStruct.new(access_token: access_token, url: url) }
 
-  context '.all' do
+  context '.fetch' do
     it "returns an object that contains a list of all supported" do
       full_url = url + QuestradeApi::REST::Market.endpoint
 
       stub_request(:get, full_url).to_return(status: 200, body: json_string('markets.json'))
 
-      response = QuestradeApi::REST::Market.all(authorization)
+      response = QuestradeApi::REST::Market.fetch(authorization)
 
       expect(response.markets.size).to be(1)
 

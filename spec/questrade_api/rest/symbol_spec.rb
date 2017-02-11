@@ -10,7 +10,7 @@ describe QuestradeApi::REST::Symbol do
   let(:url) { 'http://test.com'}
   let(:authorization) { OpenStruct.new(access_token: access_token, url: url) }
 
-  context '#get' do
+  context '#fetch' do
     subject { QuestradeApi::REST::Symbol.new(authorization, id: 10) }
 
     it 'fetches symbol data' do
@@ -19,7 +19,7 @@ describe QuestradeApi::REST::Symbol do
 
 
       expect(subject.data).to be_nil
-      subject.get
+      subject.fetch
       expect(subject.data.to_h).to eq(
         symbol: 'AAPL',
         symbol_id: 8049,
@@ -133,14 +133,14 @@ describe QuestradeApi::REST::Symbol do
     end
   end
 
-  context '.all' do
+  context '.fetch' do
     let(:ids) { [8049, 8050] }
     let(:names) { ['AAPL', 'GOOGL'] }
 
     it 'calls endpoint passing a list of ids' do
       stub_request(:get, "http://test.com/v1/symbols/?ids=8049,8050")
         .to_return(status: 200, body: '{}').times(1)
-      response = QuestradeApi::REST::Symbol.all(authorization, ids: ids)
+      response = QuestradeApi::REST::Symbol.fetch(authorization, ids: ids)
 
       expect(response.symbols.size).to be(0)
     end
@@ -148,7 +148,7 @@ describe QuestradeApi::REST::Symbol do
     it 'calls endpoint passing a list of names' do
       stub_request(:get, "http://test.com/v1/symbols/?names=AAPL,GOOGL")
         .to_return(status: 200, body: '{}')
-      response = QuestradeApi::REST::Symbol.all(authorization, names: names)
+      response = QuestradeApi::REST::Symbol.fetch(authorization, names: names)
 
       expect(response.symbols.size).to be(0)
     end
@@ -157,7 +157,7 @@ describe QuestradeApi::REST::Symbol do
       stub_request(:get, "http://test.com/v1/symbols/")
         .to_return(status: 200, body: json_string('symbols.json'))
 
-      response = QuestradeApi::REST::Symbol.all(authorization)
+      response = QuestradeApi::REST::Symbol.fetch(authorization)
 
       expect(response.symbols.size).to be(1)
 

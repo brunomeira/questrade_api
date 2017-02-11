@@ -10,7 +10,7 @@ module QuestradeApi
         super(authorization)
       end
 
-      def get
+      def fetch
         response = super
 
         build_data(raw_body) if raw_body

@@ -25,34 +25,34 @@ module QuestradeApi
       #
       # Fetch activities associated with account.
       #
-      # @param see QuestradeApi::REST::Activity.all
+      # @param see QuestradeApi::REST::Activity.fetch
       #
       # @return [OpenStruct(executions: [QuestradeApi::REST::Activity)]
       def activities(params)
-        QuestradeApi::REST::Activity.all(authorization, id, params)
+        QuestradeApi::REST::Activity.fetch(authorization, id, params)
       end
 
       # Fetch executions associated with account.
       #
-      # @param see QuestradeApi::REST::Execution.all
+      # @param see QuestradeApi::REST::Execution.fetch
       #
       # @return [OpenStruct(executions: [QuestradeApi::REST::Execution)]
       def executions(params)
-        QuestradeApi::REST::Execution.all(authorization, id, params)
+        QuestradeApi::REST::Execution.fetch(authorization, id, params)
       end
 
       # Fetch balances associated with account.
       #
       # @return [OpenStruct(per_currency_balances)]
       def balances
-        QuestradeApi::REST::Balance.all(authorization, id)
+        QuestradeApi::REST::Balance.fetch(authorization, id)
       end
 
       # Fetch positions associated with account.
       #
       # @return [OpenStruct(positions: [QuestradeApi::REST::Position])]
       def positions
-        QuestradeApi::REST::Position.all(authorization, id)
+        QuestradeApi::REST::Position.fetch(authorization, id)
       end
 
       # Fetch accounts for specific authorized user.
@@ -62,7 +62,7 @@ module QuestradeApi
       #
       # @return [OpenStruct(accounts: [QuestradeApi::REST::Account])] if call to server is successful
       # @return [Faraday::Response] if call to server is not successful
-      def self.all(authorization)
+      def self.fetch(authorization)
         response = super(access_token: authorization.access_token,
                          endpoint: endpoint,
                          url: authorization.url)

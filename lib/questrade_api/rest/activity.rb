@@ -21,7 +21,7 @@ module QuestradeApi
       # @param params [Hash] with the range of dates the activities will be fetched
       # @option params [String] :startTime The start time. ex: '2011-02-16T00:00:00.000000-05:00'
       # @option params [String] :endTime The end time. ex: '2011-02-16T00:00:00.000000-05:00'
-      def self.all(authorization, account_number, params)
+      def self.fetch(authorization, account_number, params)
         response = super(access_token: authorization.access_token,
                          endpoint: endpoint(account_number),
                          url: authorization.url,

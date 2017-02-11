@@ -14,7 +14,7 @@ module QuestradeApi
         build_data(params[:data]) if @raw_body
       end
 
-      def get
+      def fetch
         response = super(endpoint: endpoint)
 
         if response.status == 200
@@ -33,10 +33,10 @@ module QuestradeApi
       end
 
       def self.search(authorization, params = {})
-        response = superclass.all(access_token: authorization.access_token,
-                                  endpoint: endpoint('search'),
-                                  url: authorization.url,
-                                  params: params)
+        response = superclass.fetch(access_token: authorization.access_token,
+                                    endpoint: endpoint('search'),
+                                    url: authorization.url,
+                                    params: params)
 
         if response.status == 200
           result = OpenStruct.new(symbols: [])
@@ -47,7 +47,7 @@ module QuestradeApi
         response
       end
 
-      def self.all(authorization, params = {})
+      def self.fetch(authorization, params = {})
         params[:ids] = params[:ids].join(',') if params[:ids]
         params[:names] = params[:names].join(',') if params[:names]
 

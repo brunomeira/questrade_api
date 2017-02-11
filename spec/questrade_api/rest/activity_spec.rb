@@ -10,7 +10,7 @@ describe QuestradeApi::REST::Activity do
   let(:url) { 'http://test.com'}
   let(:authorization) { OpenStruct.new(access_token: access_token, url: url) }
 
-  context '.all' do
+  context '.fetch' do
     it "returns an object that contains a list of all user's activities for the specific period" do
       start_time = '2011-02-16T00:00:00.000000-05:00'
       end_time = '2011-02-16T00:00:00.000000-05:00'
@@ -19,7 +19,7 @@ describe QuestradeApi::REST::Activity do
         url + QuestradeApi::REST::Activity.endpoint(account_id) + "?#{params}"
       stub_request(:get, full_url).to_return(status: 200, body: json_string('activities.json'))
 
-      response = QuestradeApi::REST::Activity.all(authorization, account_id,
+      response = QuestradeApi::REST::Activity.fetch(authorization, account_id,
                                                   { startTime: start_time,
                                                     endTime: end_time })
 

@@ -20,7 +20,7 @@ module QuestradeApi
       # @param account_number [String] with the account the activities will be fetched
       # @return [OpenStruct(per_currency_balances, combined_balances, sod_per_currency_balances, sod_combined_balances)] If call succeeds. Each method returns an array of QuestradeApi::REST::Balance
       # @return [Faraday::Response] if call fails.
-      def self.all(authorization, account_number)
+      def self.fetch(authorization, account_number)
         response = super(access_token: authorization.access_token,
                          endpoint: endpoint(account_number),
                          url: authorization.url)

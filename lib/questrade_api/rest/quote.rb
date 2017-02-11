@@ -13,7 +13,7 @@ module QuestradeApi
         build_data(params[:data]) if @raw_body
       end
 
-      def get
+      def fetch
         response = super(endpoint: endpoint)
 
         if response.status == 200
@@ -23,7 +23,7 @@ module QuestradeApi
         response
       end
 
-      def self.all(authorization, ids)
+      def self.fetch(authorization, ids)
         response = super(access_token: authorization.access_token,
                          endpoint: endpoint,
                          url: authorization.url,

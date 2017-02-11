@@ -56,7 +56,7 @@ module QuestradeApi
         @raw_body = JSON.parse(response.body)
       end
 
-      def get(params = {})
+      def fetch(params = {})
         response = @connection.get do |req|
           req.path = params[:endpoint] || self.class.endpoint
 
@@ -71,7 +71,7 @@ module QuestradeApi
       end
 
       class << self
-        def all(params = {})
+        def fetch(params = {})
           connection = connection(params)
 
           connection.get do |req|

@@ -55,7 +55,7 @@ client.search_symbols(prefix: 'BMO')
 authorization = QuestradeApi::Authorization.new(access_token: 'access_token', api_server: 'url')
 accounts = QuestradeApi::REST::Account.fetch(accounts)
 ```
-For more advanced options, check out our [documentation](http://www.rubydoc.info/gems/questrade_api/0.0.4).
+For more advanced options, check out our [documentation](http://www.rubydoc.info/gems/questrade_api/1.0.0).
 
 ## Current Status
 

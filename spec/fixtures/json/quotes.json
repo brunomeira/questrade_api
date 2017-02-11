@@ -1,0 +1,24 @@
+{
+  "quotes": [
+    {
+      "symbol": "THI.TO",
+      "symbolId": 38738,
+      "tier": "",
+      "bidPrice": 83.65,
+      "bidSize": 6500,
+      "askPrice": 83.67,
+      "askSize": 9100,
+      "lastTradePriceTrHrs": 83.66,
+      "lastTradePrice": 83.66,
+      "lastTradeSize": 3100,
+      "lastTradeTick": "Equal",
+      "lastTradeTime": "2014-10-24T20:06:40.131000-04:00",
+      "volume": 80483500,
+      "openPrice": 83.66,
+      "highPrice": 83.86,
+      "lowPrice": 83.66,
+      "delay": 0,
+      "isHalted": false
+    }
+  ]
+}

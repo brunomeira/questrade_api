@@ -9,6 +9,9 @@ require 'questrade_api/rest/order'
 
 require 'questrade_api/rest/market'
 require 'questrade_api/rest/symbol'
+require 'questrade_api/rest/quote'
+require 'questrade_api/rest/candle'
+require 'questrade_api/rest/option'
 
 module QuestradeApi
   # @author Bruno Meira <goesmeira@gmail.com>
@@ -84,6 +87,27 @@ module QuestradeApi
 
     def search_symbols(params)
       QuestradeApi::REST::Symbol.search(@authorization, params)
+    end
+
+    def quotes(ids)
+      QuestradeApi::REST::Quote.all(@authorization, ids)
+    end
+
+    def quote(id)
+      quote =
+        QuestradeApi::REST::Quote.new(authorization: @authorization, id: id)
+
+      quote.get
+
+      quote
+    end
+
+    def candles(symbol_id, params)
+      QuestradeApi::REST::Candle.all(@authorization, symbol_id, params)
+    end
+
+    def symbol_options(symbol_id)
+      QuestradeApi::REST::Option.all(@authorization, symbol_id)
     end
 
     private

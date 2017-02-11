@@ -58,9 +58,9 @@ module QuestradeApi
 
       def get(params = {})
         response = @connection.get do |req|
-          req.path = self.class.endpoint
+          req.path = params[:endpoint] || self.class.endpoint
 
-          params.each do |key, value|
+          params.fetch(:params, []).each do |key, value|
             req.params[key] = value
           end
         end

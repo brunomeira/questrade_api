@@ -10,6 +10,10 @@ describe QuestradeApi::REST::Symbol do
   let(:url) { 'http://test.com'}
   let(:authorization) { OpenStruct.new(access_token: access_token, url: url) }
 
+  context '#get' do
+    
+  end
+
   context '.search' do
     let(:prefix) { 'BMO' }
 

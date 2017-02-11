@@ -55,7 +55,7 @@ client.search_symbols(prefix: 'BMO')
 authorization = QuestradeApi::Authorization.new(access_token: 'access_token', api_server: 'url')
 accounts = QuestradeApi::REST::Account.all(accounts)
 ```
-For more advanced options, check out our [documentation](http://www.rubydoc.info/gems/questrade_api/0.0.2).
+For more advanced options, check out our [documentation](http://www.rubydoc.info/gems/questrade_api/0.0.4).
 
 ## Current Status
 
@@ -78,15 +78,16 @@ Check the tables below for more details.
 
 | Endpoint                   | Development   | Documentation |
 | ---                        | ---           | ---           |
-| /symbols/                  | DONE          |      |
-| /symbols/:id               |               |      |
-| /symbols/search            | DONE          |      |
-| /symbols/:id/options       |      |      |
+| /symbols/                  | DONE          |               |
+| /symbols/:id               |               |               |
+| /symbols/search            | DONE          |               |
+| /symbols/:id/options       | DONE          |               |
 | /markets                   | DONE          |               |
-| /markets/quotes/:id        |      |      |
-| /markets/quotes/options    |      |      |
-| /markets/quotes/strategies |      |      |
-| /markets/candles/:id       |      |      |
+| /markets/quotes/           | DONE          |               |
+| /markets/quotes/:id        | DONE          |               |
+| /markets/quotes/options    |               |               |
+| /markets/quotes/strategies |               |               |
+| /markets/candles/:id       | DONE          |               |
 
 ### Order Calls
 

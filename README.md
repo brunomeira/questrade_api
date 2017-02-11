@@ -53,7 +53,7 @@ client.search_symbols(prefix: 'BMO')
 # In case you already have a valid access token and its respective URL, you can use the QuestradeApi::REST objects. Example:
 # authorization can be any object that responds to url and access_token
 authorization = QuestradeApi::Authorization.new(access_token: 'access_token', api_server: 'url')
-accounts = QuestradeApi::REST::Account.all(accounts)
+accounts = QuestradeApi::REST::Account.fetch(accounts)
 ```
 For more advanced options, check out our [documentation](http://www.rubydoc.info/gems/questrade_api/0.0.4).
 

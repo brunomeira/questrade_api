@@ -8,7 +8,7 @@ end
 
 group :test do
   gem 'byebug'
-  gem 'bundler', '~> 1.14'
+  gem 'bundler'
 end
 
 gem 'rake'

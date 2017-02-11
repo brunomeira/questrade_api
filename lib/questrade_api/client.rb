@@ -1,5 +1,7 @@
 require 'questrade_api/authorization'
+
 require 'questrade_api/modules/account_call'
+require 'questrade_api/modules/market_call'
 
 module QuestradeApi
   # @author Bruno Meira <goesmeira@gmail.com>

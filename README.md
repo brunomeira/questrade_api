@@ -1,3 +1,4 @@
+[![Gem Version](https://badge.fury.io/rb/questrade_api.svg)](https://badge.fury.io/rb/questrade_api)
 [![Build Status](https://travis-ci.org/brunomeira/questrade_api.svg?branch=master)](https://travis-ci.org/brunomeira/questrade_api) 
 [![Code Climate](https://codeclimate.com/github/brunomeira/questrade_api/badges/gpa.svg)](https://codeclimate.com/github/brunomeira/questrade_api)
 
@@ -55,7 +56,7 @@ client.search_symbols(prefix: 'BMO')
 authorization = QuestradeApi::Authorization.new(access_token: 'access_token', api_server: 'url')
 accounts = QuestradeApi::REST::Account.fetch(accounts)
 ```
-For more advanced options, check out our [documentation](http://www.rubydoc.info/gems/questrade_api/0.0.4).
+For more advanced options, check out our [documentation](http://www.rubydoc.info/gems/questrade_api/1.0.0).
 
 ## Current Status
 

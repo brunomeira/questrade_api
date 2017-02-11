@@ -11,7 +11,72 @@ describe QuestradeApi::REST::Symbol do
   let(:authorization) { OpenStruct.new(access_token: access_token, url: url) }
 
   context '#get' do
-    
+    subject { QuestradeApi::REST::Symbol.new(authorization, id: 10) }
+
+    it 'fetches symbol data' do
+      stub_request(:get, "http://test.com/v1/symbols/10")
+        .to_return(status: 200, body: json_string('symbol_01.json'))
+
+
+      expect(subject.data).to be_nil
+      subject.get
+      expect(subject.data.to_h).to eq(
+        symbol: 'AAPL',
+        symbol_id: 8049,
+        prev_day_close_price: 102.5,
+        high_price52: 102.9,
+        low_price52: 63.89,
+        average_vol3_months: 43769680,
+        average_vol20_days: 12860370,
+        outstanding_shares: 5987867000,
+        eps: 6.2,
+        pe: 16.54,
+        dividend: 0.47,
+        yield: 1.84,
+        ex_date: "2014-08-07T00:00:00.000000-04:00",
+        market_cap: 613756367500,
+        trade_unit: 1,
+        option_type: nil,
+        option_duration_type: nil,
+        option_root: "",
+        option_contract_deliverables: {
+          'underlyings' => [],
+          'cashInLieu' => 0
+        },
+        option_exercise_type: nil,
+        listing_exchange: "NASDAQ",
+        description: "APPLE INC",
+        security_type: "Stock",
+        option_expiry_date: nil,
+        dividend_date: "2014-08-14T00:00:00.000000-04:00",
+        option_strike_price: nil,
+        is_tradable: true,
+        is_quotable: true,
+        has_options: true,
+        min_ticks: [
+          {
+            'pivot' => 0,
+            'minTick' => 0.0001
+          },
+          {
+            'pivot' => 1,
+            'minTick' => 0.01
+          }
+        ],
+        industry_sector: "BasicMaterials",
+        industry_group:  "Steel",
+        industry_sub_group: "Steel")
+    end
+
+  end
+
+  context '#endpoint' do
+    subject { QuestradeApi::REST::Symbol.new(authorization, id: 10) }
+
+    it 'calls endpoint' do
+      url = "/v1/symbols/10"
+      expect(subject.endpoint).to eq(url)
+    end
   end
 
   context '.search' do

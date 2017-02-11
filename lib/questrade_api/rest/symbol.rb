@@ -14,6 +14,20 @@ module QuestradeApi
         build_data(params[:data]) if @raw_body
       end
 
+      def get
+        response = super(endpoint: endpoint)
+
+        if response.status == 200
+          parse_symbols(response.body)
+        end
+
+        response
+      end
+
+      def endpoint
+        self.class.endpoint + "#{id}"
+      end
+
       def self.endpoint(extra = '')
         "#{BASE_ENDPOINT}/symbols/#{extra}"
       end
@@ -73,6 +87,16 @@ module QuestradeApi
       end
 
       private_class_method :parse_symbols
+
+      private
+
+      def parse_symbols(body)
+        raw = JSON.parse(body)
+
+        raw['symbols'].each do |symbol|
+          build_data(symbol)
+        end
+      end
     end
   end
 end

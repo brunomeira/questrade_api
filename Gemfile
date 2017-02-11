@@ -8,8 +8,6 @@ end
 
 group :test do
   gem 'byebug'
-  gem 'guard'
-  gem 'guard-rspec'
   gem 'bundler', '~> 1.14'
 end
 

@@ -20,14 +20,31 @@ gem 'questrade_api'
 $ bundle
 ```
 - Follow the tutorial on <http://www.questrade.com/api/documentation/getting-started> to generate a refresh token
-- Copy the snippet of code below to your application, and replace the 'XXXX' token with the token generated in the previous step.
+
+### Authorization
+
+- After getting the refresh token from Questrade, you are now ready to ask for an access token. In order to fetch an access token, copy the snippet of code below and replace the example token with your refresh token.
 
 ```ruby
 # By default this API calls the practice(demo) endpoint.
-# Check our documentation to learn how to call the live endpoint.
 client = QuestradeApi::Client.new(refresh_token: 'XXXX')
+
+# If you want to call the live platform you need to pass :live as a parameter. Ex:
+client = QuestradeApi::Client.new(refresh_token: 'XXXX', :live)
+
+# Both calls automatically ask for a new access token
+
+
+# In case you already have an access token and a api_server, you can instead use:
+client = QuestradeApi::Client.new(access_token: 'XXXX', api_server: 'XXXX', :live)
+
+# To ask for a new access token(Questrade invalidates tokens every 30 mins), simply call:
+client.refresh_token # Make sure client has a valid refresh_token
 ```
-- That's all you need to access the API. A few examples of what you can do with it:
+
+### Some examples:
+
+- After fetching a valid access token, you are now ready to use the API. Below you can find a few examples of the calls you can make with the gem.
 
 ```ruby
 # Get Questrade's current server time

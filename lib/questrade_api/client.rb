@@ -9,11 +9,11 @@ module QuestradeApi
     include QuestradeApi::AccountCall
     include QuestradeApi::MarketCall
 
-    attr_reader :authorization
+    attr_accessor :authorization
 
     # @see QuestradeApi::Client#initialize for more details
     def initialize(params = {}, mode = :practice)
-      @authorization = QuestradeApi::Authorization.new(params, mode)
+      self.authorization = QuestradeApi::Authorization.new(params, mode)
       refresh_token if refresh_token?
     end
 

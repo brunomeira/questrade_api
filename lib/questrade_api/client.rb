@@ -19,14 +19,13 @@ module QuestradeApi
 
     # Fetches a new access_token. (see QuestradeApi::Authorization#refresh_token)
     def refresh_token
-      @authorization.refresh_token
+      authorization.refresh_token
     end
-
 
     private
 
     def refresh_token?
-      data = @authorization.data
+      data = authorization.data
       data.refresh_token && !data.api_server && !data.access_token
     end
   end

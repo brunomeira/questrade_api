@@ -13,7 +13,11 @@ module QuestradeApi
       def fetch
         response = super
 
-        build_data(raw_body) if raw_body
+        if raw_body
+          build_data(raw_body)
+          data.time = DateTime.parse(data.time)
+          response = data.time
+        end
 
         response
       end

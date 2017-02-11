@@ -11,26 +11,24 @@ module QuestradeApi
     # Fetch current server time.
     #
     # @return [DateTime] if no issues to call /time endpoint occurs.
-    # @return [nil] if current server time cannot be fetched.
+    # @return [Faraday::Response] if current server time cannot be fetched.
     def time
       time = QuestradeApi::REST::Time.new(authorization)
       time.fetch
-
-      time.data && time.data.time
     end
 
     # Fetch all accounts associated with user.
     #
     # @return [Array<QuestradeApi::REST::Account>]
     def accounts
-      QuestradeApi::REST::Account.fetch(authorization).accounts
+      QuestradeApi::REST::Account.fetch(authorization)
     end
 
     # Fetch all positions associated with account.
     #
     # @param account_id [String] to which positions will be fetched.
     #
-    # @return [Array<QuestradeApi::REST::Position>]
+    # @return [OpenStruct(accounts: Array<QuestradeApi::REST::Position>)]
     def positions(account_id)
       QuestradeApi::REST::Position.fetch(authorization, account_id)
     end
@@ -53,7 +51,7 @@ module QuestradeApi
     end
 
     def orders(account_id, params = {})
-      QuestradeApi::REST::Activity.fetch(authorization, account_id, params)
+      QuestradeApi::REST::Order.fetch(authorization, account_id, params)
     end
   end
 end

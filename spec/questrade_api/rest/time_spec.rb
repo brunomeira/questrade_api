@@ -21,8 +21,19 @@ describe QuestradeApi::REST::Time do
                                         body: json_string('time.json'))
       subject.fetch
 
+      expected_return = DateTime.parse('2017-01-24T12:14:42.730000-04:00')
+
       expect(subject.data).to_not be_nil
-      expect(subject.data.time).to eq('2017-01-24T12:14:42.730000-04:00')
+      expect(subject.data.time).to eq(expected_return)
+    end
+
+    it 'returns time' do
+      stub_request(:get, url).to_return(status: 200,
+                                        body: json_string('time.json'))
+      result = subject.fetch
+
+      expected_return = DateTime.parse('2017-01-24T12:14:42.730000-04:00')
+      expect(result).to eq(expected_return)
     end
   end
 

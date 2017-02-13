@@ -85,7 +85,7 @@ client.candles('123', startTime: DateTime.yesterday.to_s, endTime: DateTime.now.
 authorization = QuestradeApi::Authorization.new(access_token: 'access_token', api_server: 'url')
 accounts = QuestradeApi::REST::Account.fetch(accounts)
 ```
-For more advanced options, check out our [documentation](http://www.rubydoc.info/gems/questrade_api/1.0.0).
+For more advanced options, check out our [documentation](http://www.rubydoc.info/gems/questrade_api/1.1.0).
 
 ## Current Status
 

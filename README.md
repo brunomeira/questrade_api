@@ -62,11 +62,23 @@ client.positions('account_id')
 # Activities of an specific period of time for an specific account
 client.activities('account_id', startTime: DateTime.yesterday.to_s, endTime: DateTime.now.to_s)
 
+# Symbol by ID
+client.symbol('id')
+
 # Symbols by name
 client.symbols(names: ['AAPL'])
 
 # Search symbols by prefix
 client.search_symbols(prefix: 'BMO')
+
+# List of quotes
+client.quotes(['123', '456'])
+
+# Quote details
+client.quote('123')
+
+# Historical Market in candlestick format
+client.candles('123', startTime: DateTime.yesterday.to_s, endTime: DateTime.now.to_s)
 
 # In case you already have a valid access token and its respective URL, you can use the QuestradeApi::REST objects. Example:
 # authorization can be any object that responds to url and access_token

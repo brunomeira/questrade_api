@@ -31,6 +31,13 @@ describe QuestradeApi::MarketCall do
     end
   end
 
+  context '.symbol' do
+    it 'calls proper endpoint' do
+      expect_any_instance_of(QuestradeApi::REST::Symbol).to receive(:fetch).and_return([])
+      expect(subject.symbol('1')).to be_a(QuestradeApi::REST::Symbol)
+    end
+  end
+
   context '.search_symbols' do
     it 'calls proper endpoint' do
       expect(QuestradeApi::REST::Symbol).to receive(:search).and_return([])

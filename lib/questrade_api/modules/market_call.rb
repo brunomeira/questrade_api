@@ -14,6 +14,13 @@ module QuestradeApi
       QuestradeApi::REST::Symbol.fetch(authorization, params)
     end
 
+    def symbol(id)
+      symbol = QuestradeApi::REST::Symbol.new(authorization, id: id)
+      symbol.fetch
+
+      symbol
+    end
+
     def search_symbols(params)
       QuestradeApi::REST::Symbol.search(authorization, params)
     end

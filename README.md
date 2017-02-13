@@ -83,7 +83,7 @@ client.candles('123', startTime: DateTime.yesterday.to_s, endTime: DateTime.now.
 # In case you already have a valid access token and its respective URL, you can use the QuestradeApi::REST objects. Example:
 # authorization can be any object that responds to url and access_token
 authorization = QuestradeApi::Authorization.new(access_token: 'access_token', api_server: 'url')
-accounts = QuestradeApi::REST::Account.fetch(accounts)
+accounts = QuestradeApi::REST::Account.fetch(authorization)
 ```
 For more advanced options, check out our [documentation](http://www.rubydoc.info/gems/questrade_api/1.1.0).
 
@@ -109,7 +109,7 @@ Check the tables below for more details.
 | Endpoint                   | Development   | Documentation |
 | ---                        | ---           | ---           |
 | /symbols/                  | DONE          |               |
-| /symbols/:id               |               |               |
+| /symbols/:id               | DONE          |               |
 | /symbols/search            | DONE          |               |
 | /symbols/:id/options       | DONE          |               |
 | /markets                   | DONE          |               |

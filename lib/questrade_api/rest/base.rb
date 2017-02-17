@@ -41,6 +41,7 @@ module QuestradeApi
  #         faraday.response :logger
           faraday.adapter Faraday.default_adapter
           faraday.headers['Content-Type'] = 'application/json'
+          faraday.headers['User-Agent'] = "QuestradeApi v#{QuestradeApi::VERSION}"
           faraday.headers['Authorization'] = "Bearer #{params[:access_token]}"
         end
       end
@@ -80,6 +81,15 @@ module QuestradeApi
             params.fetch(:params, []).each do |key, value|
               req.params[key] = value
             end
+          end
+        end
+
+        def post(params = {})
+          connection = connection(params)
+
+          connection.post do |req|
+            req.path = params[:endpoint]
+            req.body = params[:body] if params[:body]
           end
         end
       end

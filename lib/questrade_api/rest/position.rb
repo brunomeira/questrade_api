@@ -3,8 +3,6 @@ require 'questrade_api/rest/base'
 module QuestradeApi
   module REST
     class Position < QuestradeApi::REST::Base
-      attr_accessor :account_id
-
       def initialize(params)
         @account_id = params[:account_id]
 

@@ -10,7 +10,7 @@ module QuestradeApi
   module REST
     # @author Bruno Meira <goesmeira@gmail.com>
     class Account < QuestradeApi::REST::Base
-      attr_accessor :id, :user_id
+      attr_accessor :user_id
 
       def initialize(authorization, params)
         super(authorization)

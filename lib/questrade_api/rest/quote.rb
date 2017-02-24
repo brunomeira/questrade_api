@@ -3,8 +3,6 @@ require 'questrade_api/rest/base'
 module QuestradeApi
   module REST
     class Quote < QuestradeApi::REST::Base
-      attr_accessor :id
-
       def initialize(params)
         super(params[:authorization])
         @id = params[:id]

@@ -4,8 +4,6 @@ module QuestradeApi
   module REST
     # @author Bruno Meira <goesmeira@gmail.com>
     class Execution < QuestradeApi::REST::Base
-      attr_accessor :account_id
-
       def initialize(params)
         @account_id = params[:account_id]
 

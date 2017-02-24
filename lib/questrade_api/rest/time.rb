@@ -4,8 +4,6 @@ module QuestradeApi
   module REST
     # @author Bruno Meira <goesmeira@gmail.com>
     class Time < QuestradeApi::REST::Base
-      attr_reader :data
-
       def initialize(authorization)
         super(authorization)
       end

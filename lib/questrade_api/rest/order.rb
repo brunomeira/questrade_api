@@ -3,8 +3,6 @@ require 'questrade_api/rest/base'
 module QuestradeApi
   module REST
     class Order < QuestradeApi::REST::Base
-      attr_accessor :account_id, :id
-
       def initialize(authorization, params = {})
         super(authorization)
 
@@ -15,20 +13,37 @@ module QuestradeApi
         build_data(params[:data]) if @raw_body
       end
 
-      def self.fetch(authorization, account_number, params)
+      def update(params = {})
+        params[:accountNumber] = account_id
 
+        response = self.class.post(access_token: authorization.access_token,
+                                   endpoint: endpoint,
+                                   url: authorization.url,
+                                   body: params.to_json)
+
+        parse_order(response.body) if response.status == 200
+
+        response
+      end
+
+      def self.create(authorization, account_number, params = {})
+        params[:accountNumber] = account_number
+
+        response = post(access_token: authorization.access_token,
+                        endpoint: endpoint(account_number),
+                        url: authorization.url,
+                        body: params.to_json)
+
+        build_orders(authorization, account_number, response)
+      end
+
+      def self.fetch(authorization, account_number, params)
         response = super(access_token: authorization.access_token,
                          endpoint: endpoint(account_number),
                          url: authorization.url,
                          params: params)
 
-        result = OpenStruct.new(orders: [])
-
-        if response.status == 200
-          result.orders = parse_orders(authorization, account_number, response.body)
-        end
-
-        result
+        build_orders(authorization, account_number, response)
       end
 
       def endpoint
@@ -37,6 +52,13 @@ module QuestradeApi
 
       def self.endpoint(account_id)
         "#{BASE_ENDPOINT}/accounts/#{account_id}/orders"
+      end
+
+      private
+
+      def parse_order(body)
+        raw = JSON.parse(body)
+        build_data(raw['orders'].first) if raw['orders'].size > 0
       end
 
       def self.parse_orders(authorization, account_id, body)
@@ -52,7 +74,18 @@ module QuestradeApi
         orders
       end
 
-      private_class_method :parse_orders
+      def self.build_orders(authorization, account_number, response)
+        result = response
+
+        if response.status == 200
+          result = OpenStruct.new(orders: [])
+          result.orders = parse_orders(authorization, account_number, response.body)
+        end
+
+        result
+      end
+
+      private_class_method :parse_orders, :build_orders
     end
   end
 end

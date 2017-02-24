@@ -10,7 +10,8 @@ module QuestradeApi
 
       BASE_ENDPOINT = '/v1'.freeze
       attr_accessor :connection, :raw_body, :endpoint,
-                    :authorization, :data
+                    :authorization, :data, :account_id, :id
+
 
       # Initialize an instance of QuestradeApi::REST::Base
       #

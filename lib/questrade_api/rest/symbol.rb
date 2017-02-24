@@ -3,8 +3,6 @@ require 'questrade_api/rest/base'
 module QuestradeApi
   module REST
     class Symbol < QuestradeApi::REST::Base
-      attr_accessor :id
-
       def initialize(authorization, params = {})
         super(authorization)
 
@@ -38,13 +36,7 @@ module QuestradeApi
                                     url: authorization.url,
                                     params: params)
 
-        if response.status == 200
-          result = OpenStruct.new(symbols: [])
-          result.symbols = parse_symbols(authorization, response.body)
-          response = result
-        end
-
-        response
+        build_symbols(authorization, response)
       end
 
       def self.fetch(authorization, params = {})
@@ -56,37 +48,8 @@ module QuestradeApi
                          url: authorization.url,
                          params: params)
 
-        if response.status == 200
-          result = OpenStruct.new(symbols: [])
-          result.symbols = parse_symbols(authorization, response.body)
-          response = result
-        end
-
-        response
+        build_symbols(authorization, response)
       end
-
-      # TODO: Review this later
-      def self.parse_symbols(authorization, body)
-        raw = JSON.parse(body)
-
-        symbols = []
-
-        if raw['symbols']
-          raw['symbols'].each do |symbol|
-            symbols << new(authorization, id: symbol['symbolId'], data: symbol)
-          end
-        end
-
-        if raw['symbol']
-          raw['symbol'].each do |symbol|
-            symbols << new(authorization, id: symbol['symbolId'], data: symbol)
-          end
-        end
-
-        symbols
-      end
-
-      private_class_method :parse_symbols
 
       private
 
@@ -97,6 +60,35 @@ module QuestradeApi
           build_data(symbol)
         end
       end
+
+      def self.build_symbols(authorization, response)
+        result = response
+
+        if response.status == 200
+          result = OpenStruct.new(symbols: [])
+          result.symbols = parse_symbols(authorization, response.body)
+        end
+
+        result
+      end
+
+      def self.parse_symbols(authorization, body)
+        raw = JSON.parse(body)
+
+        symbols = []
+
+        results = raw['symbols'] || raw['symbol']
+
+        if results
+          results.each do |symbol|
+            symbols << new(authorization, id: symbol['symbolId'], data: symbol)
+          end
+        end
+
+        symbols
+      end
+
+      private_class_method :parse_symbols, :build_symbols
     end
   end
 end

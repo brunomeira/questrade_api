@@ -2,12 +2,14 @@ require 'questrade_api/authorization'
 
 require 'questrade_api/modules/account_call'
 require 'questrade_api/modules/market_call'
+require 'questrade_api/modules/order_call'
 
 module QuestradeApi
   # @author Bruno Meira <goesmeira@gmail.com>
   class Client
     include QuestradeApi::AccountCall
     include QuestradeApi::MarketCall
+    include QuestradeApi::OrderCall
 
     attr_accessor :authorization
 

@@ -77,6 +77,30 @@ client.quotes(['123', '456'])
 # Quote details
 client.quote('123')
 
+# Quote Options
+filters = [{
+            "optionType": "Call",
+            "underlyingId": 27426,
+            "expiryDate": "2017-01-20T00:00:00.000000-05:00",
+            "minstrikePrice": 70,
+            "maxstrikePrice": 80
+          }]
+
+option_ids = [123,456]
+client.quote_options(filters, option_ids)
+
+# Quote Strategies
+variants =
+[
+  {
+    "variantId": 1,
+    "strategy": "Custom",
+    "legs": [{ "symbolId": 27426, "ratio": 1000, "action": "Buy" },
+             { "symbolId": 10550014, "ratio": 10, "action": "Sell" }]
+  }
+ ]
+client.quote_strategies(variants)
+
 # Historical Market in candlestick format
 client.candles('123', startTime: DateTime.yesterday.to_s, endTime: DateTime.now.to_s)
 

@@ -3,6 +3,8 @@ require 'questrade_api/rest/symbol'
 require 'questrade_api/rest/quote'
 require 'questrade_api/rest/candle'
 require 'questrade_api/rest/option'
+require 'questrade_api/rest/option_quote'
+require 'questrade_api/rest/strategy_quote'
 
 module QuestradeApi
   module MarketCall
@@ -36,6 +38,17 @@ module QuestradeApi
       quote.fetch
 
       quote
+    end
+
+    def quote_options(filters, option_ids)
+      QuestradeApi::REST::OptionQuote.fetch(authorization,
+                                            filters: filters,
+                                            optionIds: option_ids)
+    end
+
+    def quote_strategies(variants)
+      QuestradeApi::REST::StrategyQuote.fetch(authorization,
+                                              variants: variants)
     end
 
     def candles(symbol_id, params)

@@ -115,8 +115,8 @@ Check the tables below for more details.
 | /markets                   | DONE          |               |
 | /markets/quotes/           | DONE          |               |
 | /markets/quotes/:id        | DONE          |               |
-| /markets/quotes/options    |               |               |
-| /markets/quotes/strategies |               |               |
+| /markets/quotes/options    | DONE          |               |
+| /markets/quotes/strategies | DONE          |               |
 | /markets/candles/:id       | DONE          |               |
 
 ### Order Calls

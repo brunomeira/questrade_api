@@ -59,6 +59,20 @@ describe QuestradeApi::MarketCall do
     end
   end
 
+  context '.quote_options' do
+    it 'calls proper endpoint' do
+      expect(QuestradeApi::REST::OptionQuote).to receive(:fetch).and_return([])
+      expect(subject.quote_options([], [])).to eq([])
+    end
+  end
+
+  context '.quote_strategies' do
+    it 'calls proper endpoint' do
+      expect(QuestradeApi::REST::StrategyQuote).to receive(:fetch).and_return([])
+      expect(subject.quote_strategies([])).to eq([])
+    end
+  end
+
   context '.candles' do
     it 'calls proper endpoint' do
       expect(QuestradeApi::REST::Candle).to receive(:fetch).and_return([])

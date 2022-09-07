@@ -24,5 +24,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'webmock', '~> 2.3'
   spec.add_development_dependency 'rubocop', '~> 0.47'
 
-  spec.add_dependency 'faraday', '~> 0.9'
+  spec.add_dependency 'faraday', '~> 2.5'
 end
